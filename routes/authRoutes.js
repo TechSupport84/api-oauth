@@ -19,7 +19,7 @@ router.get(
     "/auth/github/callback",
     passport.authenticate("github", { failureRedirect: "/auth/failure" }),
     (req, res) => {
-        res.json({ message: "Authentication successful", user: req.user });
+        res.redirect("http://localhost:5173/");
     }
 );
 
