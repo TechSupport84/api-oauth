@@ -5,6 +5,7 @@ import passport from "./config/passport.js";
 import { connectDb } from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRouter.js";
+import cors from "cors"
 
 dotenv.config();
 const app = express();
@@ -27,6 +28,11 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+app.use(cors({ 
+    origin: "http://localhost:5173",  // Allow frontend URL
+    credentials: true                 // Allow cookies/auth headers
+  }));
 // Routes
 app.use(authRoutes);
 app.use("/user", userRoutes);
